@@ -4,14 +4,11 @@ import {AppInput} from "../AppInput/AppInput";
 import {AppButton} from "../AppButton/AppButton";
 
 
-type AppContainerType = {
-    getCityKey:(cityName: string)=> void
-}
-export const AppContainer = (props: AppContainerType) => {
+export const AppContainer = () => {
     return (
         <>
             <div className={style.container}>
-                <AppInput getCityKey={props.getCityKey}/>
+                <AppInput/>
                 <AppButton/>
             </div>
         </>
