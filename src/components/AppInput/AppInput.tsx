@@ -1,7 +1,10 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import style from './AppInput.module.css';
 
-export const AppInput = () => {
+type AppInputType = {
+    getCityKey:(cityName: string)=>void
+}
+export const AppInput = (props: AppInputType) => {
 
 
 
@@ -17,9 +20,10 @@ export const AppInput = () => {
     const onEnterCatchingHandler = (event: KeyboardEvent<HTMLInputElement>) => {
         if(event.key === 'Enter'){
             setInputValue(event.currentTarget.value);
-            console.log(event.currentTarget.value);
             setInputValue('');
+            props.getCityKey(inputValue);
         }
+
     }
     return (
         <>
