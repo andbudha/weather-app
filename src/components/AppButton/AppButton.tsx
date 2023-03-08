@@ -2,9 +2,10 @@ import React from 'react';
 
 export const AppButton = () => {
     return (
-        <div>
+        <>
+            <button>SEARCH</button>
 
-        </div>
+        </>
     );
 };
 
