@@ -12,6 +12,8 @@ export const AppContainer = () => {
     const[cityKey, setCityKey]=useState('');
     const[cityName, setCityName]=useState('');
     const[countryName, setCountryName]=useState('');
+    const[weatherText, setWeatherText]=useState('');
+    const[temp, setTemp]=useState('');
 
     //input-value getting func
     const getValue = (inputValue: string) => {
@@ -23,7 +25,12 @@ export const AppContainer = () => {
         }).catch(err=>err);
 
         getWeather(cityKey).then(data=>{
+            console.log(cityKey);
             console.log(data);
+            console.log(data.Temperature.Metric.Value);
+            const temperature = data.Temperature.Metric.Value
+            setWeatherText(data.WeatherText);
+            setTemp(temperature);
         }).catch(err=>err);
 
     }
@@ -33,7 +40,12 @@ export const AppContainer = () => {
             <div className={style.container}>
                 <AppInput getValue={getValue}/>
                 <AppButton/>
-                <AppCard cityName={cityName} countryName={countryName}/>
+                <AppCard
+                    cityName={cityName}
+                    countryName={countryName}
+                    weatherText={weatherText}
+                    temp={temp}
+                />
             </div>
         </>
     );

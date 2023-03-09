@@ -1,9 +1,13 @@
 import React from 'react';
 import style from './AppCrad.module.css';
 
+
+
 type AppCardPropsType = {
     cityName: string
     countryName: string
+    weatherText: string
+    temp: string
 }
 export const AppCard = (props: AppCardPropsType) => {
 
@@ -20,9 +24,9 @@ export const AppCard = (props: AppCardPropsType) => {
                 <div className={style.details}>
                     <h3>{props.cityName}</h3>
                     <h3>{props.countryName}</h3>
-                    <div>Weather Condition</div>
+                    <div>{props.weatherText}</div>
                     <div>
-                        <span>tem</span>
+                        <span>{props.temp}</span>
                         <span>&deg;C</span>
                     </div>
                 </div>
