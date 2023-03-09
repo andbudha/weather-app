@@ -16,8 +16,21 @@ export const AppContainer = () => {
     const[temp, setTemp]=useState('');
 
     //input-value getting func
-    const getValue = (inputValue: string) => {
-        getCity(inputValue).then(data=>{
+    const getValue = async (inputValue: string) => {
+        const cityDetails = await getCity(inputValue);
+        const weatherDetails = await getWeather(cityDetails.Key);
+        setCityKey(weatherDetails);
+        setCityName(cityDetails.EnglishName);
+        setCountryName(cityDetails.Country.EnglishName);
+        setWeatherText(weatherDetails.WeatherText);
+        setTemp(weatherDetails.Temperature.Metric.Value);
+
+
+
+
+        {/*
+
+         getCity(inputValue).then(data=>{
             console.log(data)
             setCityKey(data.Key);
             setCityName(data.EnglishName);
@@ -32,6 +45,8 @@ export const AppContainer = () => {
             setWeatherText(data.WeatherText);
             setTemp(temperature);
         }).catch(err=>err);
+        */}
+
 
     }
 
