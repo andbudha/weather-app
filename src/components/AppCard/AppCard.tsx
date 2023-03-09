@@ -1,7 +1,15 @@
 import React from 'react';
 import style from './AppCrad.module.css';
 
-export const AppCard = () => {
+type AppCardPropsType = {
+    cityName: string
+    countryName: string
+}
+export const AppCard = (props: AppCardPropsType) => {
+
+
+
+
     return (
         <>
             <div className={style.card}>
@@ -10,8 +18,8 @@ export const AppCard = () => {
                     <img src="#" alt="icon img"/>
                 </div>
                 <div className={style.details}>
-                    <h3>City Name</h3>
-                    <h3>Country Name</h3>
+                    <h3>{props.cityName}</h3>
+                    <h3>{props.countryName}</h3>
                     <div>Weather Condition</div>
                     <div>
                         <span>tem</span>

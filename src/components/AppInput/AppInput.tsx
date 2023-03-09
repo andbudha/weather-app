@@ -1,38 +1,15 @@
 import React, {ChangeEvent, useState, KeyboardEvent} from 'react';
 import style from './AppInput.module.css';
 
+type AppInputPropsType = {
+    getValue:(inputValue: string)=> void
+}
 
-export const AppInput = () => {
+export const AppInput = (props: AppInputPropsType) => {
+
+
     //input state
     const[inputValue, setInputValue] = useState('');
-
-    //api key
-    const key = 'jC35CfzUAWtBEfPALcB1XCffxaxiT8yz';
-
-    //getting city info
-    const getCity = async (city:string) => {
-        const base = 'http://dataservice.accuweather.com/locations/v1/cities/search';
-        const query = `?apikey=${key}&q=${city}`
-        const response = await fetch(base+query);
-        const data = await response.json();
-        return data[0];
-    }
-
-    //getting weather info
-    const getWeather = async (cityKey: string) => {
-        const base = 'http://dataservice.accuweather.com/currentconditions/v1/'
-        const query = `${cityKey}?apikey=${key}`
-        const response = await fetch(base+query);
-        const data = await response.json();
-        return data[0];
-    }
-
-    const updateCity = async (city: string) => {
-      const cityDetails = await getCity(city);
-      const weatherDetails = await getWeather(cityDetails.Key);
-        console.log(cityDetails, weatherDetails);
-      return {cityDetails, weatherDetails}
-    }
 
 
     //input value catching func
@@ -45,7 +22,7 @@ export const AppInput = () => {
         if(event.key === 'Enter'){
             setInputValue(event.currentTarget.value);
             setInputValue('');
-            updateCity(inputValue).then(data=>data);
+            props.getValue(inputValue);
         }
 
     }
