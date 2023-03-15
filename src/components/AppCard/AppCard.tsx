@@ -1,5 +1,7 @@
 import React from 'react';
 import style from './AppCrad.module.css';
+import dayTime from './img/day.svg';
+import icon from './img/icons/1.svg';
 
 
 
@@ -17,9 +19,9 @@ export const AppCard = (props: AppCardPropsType) => {
     return (
         <>
             <div className={style.card}>
-                <img src="https://via.placeholder.com/340x300" alt="day time img" className={style.time}/>
+                <img src={dayTime} alt="day time img" className={style.time}/>
                 <div className={style.icon}>
-                    <img src="#" alt="icon img"/>
+                    <img src={icon} alt="icon img" className={style.icon_image}/>
                 </div>
                 <div className={style.details}>
                     <h3>{props.cityName}</h3>

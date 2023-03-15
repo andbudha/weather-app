@@ -7,4 +7,19 @@
 
 .card {
     text-align: center;
+    border: 1px solid;
+    margin-top: 15px;
+}
+
+.time {
+    max-width: 100%;
+    max-height: 100%;
+    margin: 15px 0 0;
+}
+
+.icon_image {
+    max-height: 50px;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+    margin-top: -30px;
 }
