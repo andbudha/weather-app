@@ -22,30 +22,6 @@ export const AppContainer = () => {
         setCountryName(cityDetails.Country.EnglishName);
         setWeatherText(weatherDetails.WeatherText);
         setTemp(weatherDetails.Temperature.Metric.Value);
-
-
-
-
-        {/*
-
-         getCity(inputValue).then(data=>{
-            console.log(data)
-            setCityKey(data.Key);
-            setCityName(data.EnglishName);
-            setCountryName(data.Country.EnglishName);
-        }).catch(err=>err);
-
-        getWeather(cityKey).then(data=>{
-            console.log(cityKey);
-            console.log(data);
-            console.log(data.Temperature.Metric.Value);
-            const temperature = data.Temperature.Metric.Value
-            setWeatherText(data.WeatherText);
-            setTemp(temperature);
-        }).catch(err=>err);
-        */}
-
-
     }
 
     return (
