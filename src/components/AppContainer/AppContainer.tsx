@@ -9,7 +9,6 @@ import {getCity, getWeather} from "../GetCityDetails";
 
 export const AppContainer = () => {
     //city key&name states
-    const[cityKey, setCityKey]=useState('');
     const[cityName, setCityName]=useState('');
     const[countryName, setCountryName]=useState('');
     const[weatherText, setWeatherText]=useState('');
@@ -19,7 +18,6 @@ export const AppContainer = () => {
     const getValue = async (inputValue: string) => {
         const cityDetails = await getCity(inputValue);
         const weatherDetails = await getWeather(cityDetails.Key);
-        setCityKey(weatherDetails);
         setCityName(cityDetails.EnglishName);
         setCountryName(cityDetails.Country.EnglishName);
         setWeatherText(weatherDetails.WeatherText);
