@@ -1,0 +1,29 @@
+@import '../../utilities/sass_variables.module.scss';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.main_container {
+    height: 100vh;
+    width: 100%;
+    background-image: url('../../imgs/modern-tokyo-street-background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+}
+
+.app_container {
+    z-index: 2;
+    position: absolute;
+    height: 450px;
+    width: 400px;
+    border: 2px solid $primary-color;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

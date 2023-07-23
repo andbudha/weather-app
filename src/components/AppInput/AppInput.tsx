@@ -31,7 +31,7 @@ export const AppInput = (props: AppInputPropsType) => {
             <h2 className={style.mx_1}>Weather with Andrei</h2>
             <p className={style.mx_1}>Enter a city-name for weather information!</p>
             <input
-                className={style.mx_1}
+                className={`${style.mx_1} ${style.input}`}
                 value={inputValue}
                 onChange={valueCatchingHandler}
                 onKeyDown={onEnterCatchingHandler}
