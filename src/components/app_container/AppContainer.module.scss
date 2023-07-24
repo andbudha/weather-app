@@ -1,0 +1,123 @@
+@import '../../utilities/sass_variables.module.scss';
+@import '../../utilities/sass_mixins.module.scss';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.main_container {
+    height: 100vh;
+    width: 100%;
+    background-image: url('../../imgs/modern-tokyo-street-background.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    filter: blur(4px);
+    -webkit-filter: blur(4px);
+}
+
+.app_container {
+    z-index: 2;
+    position: absolute;
+    height: 450px;
+    width: 400px;
+    // border: 2px solid $primary-color;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    @include flexBox(column, center, center);
+
+}
+
+.temperature {
+    height: 65px;
+    width: 320px;
+    // border: 1px solid $primary-color;
+    @include flexBox(row, center, center);
+
+    .degrees,
+    .symbol {
+        font-size: $extra-lagre-font-size;
+        color: $primary-color;
+        font-weight: 800;
+        letter-spacing: 1px;
+    }
+}
+
+.weather {
+    height: 125px;
+    width: 320px;
+    @include flexBox(column, center, center);
+
+    .weather_icon {
+        color: $primary-color;
+        height: 75px;
+        width: 75px;
+        @include flexBox(column, center, center);
+
+        .icon {
+            height: 90%;
+            width: 90%;
+        }
+    }
+
+    .weather_details {
+        height: 50px;
+        @include flexBox(row, center, center);
+
+        .details {
+            font-size: $normal-font-size;
+            color: $primary-color;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+    }
+}
+
+.city {
+    height: 50px;
+    width: 320px;
+    @include flexBox(row, center, center);
+
+    .location_icon {
+        color: $primary-color;
+        height: 100%;
+        width: 35px;
+        @include flexBox(row, center, center);
+
+        .icon {
+            height: 60%;
+            width: 100%;
+        }
+    }
+
+    .location_name {
+        height: 100%;
+        @include flexBox(row, center, center);
+
+        .name {
+            font-size: $primary-font-size;
+            color: $primary-color;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+    }
+
+}
+
+.country {
+    height: 50px;
+    width: 320px;
+    // border: 1px solid $primary-color;
+    @include flexBox(row, center, center);
+
+    .name {
+        font-size: $lagre-font-size;
+        color: $primary-color;
+        font-weight: 600;
+        letter-spacing: 1px;
+    }
+}
