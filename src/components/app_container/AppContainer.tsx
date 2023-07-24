@@ -1,5 +1,5 @@
 
-import { BsCloudy } from "react-icons/bs";
+
 import { CiLocationOn } from "react-icons/ci";
 import styles from './AppContainer.module.scss';
 
@@ -12,6 +12,9 @@ export const AppContainer = () => {
     //location and weather detail states
     const [cityName, setCityName] = useState('');
     const [countryName, setCountryName] = useState('');
+    const [temperature, setTemperature] = useState<null | number>(null);
+    const [weatherDetails, setWeatherDetails] = useState('');
+    const [icon, setIcon] = useState<null | number>(null);
 
     const setCity = (cityName: string) => {
         setCityName(cityName);
@@ -23,21 +26,36 @@ export const AppContainer = () => {
         console.log(countryName);
     }
 
+    const getTemperature = (temperature: number) => {
+        const degrees = Math.floor(temperature);
+        setTemperature(degrees)
+    }
+
+    const getDetails = (weatherDetails: string) => {
+        setWeatherDetails(weatherDetails)
+    }
     return (
         <>
             <div className={styles.main_container}></div>
             <div className={styles.app_container}>
-                <SearchInput setCity={setCity} setCountry={setCountry} />
+                <SearchInput
+                    setCity={setCity}
+                    setCountry={setCountry}
+                    getTemperature={getTemperature}
+                    getDetails={getDetails}
+                />
                 <div className={styles.temperature}>
-                    <p className={styles.degrees}>35</p>
+                    <p className={styles.degrees}>{temperature}</p>
                     <p className={styles.symbol}>&#8451;</p>
                 </div>
                 <div className={styles.weather}>
                     <div className={styles.weather_icon}>
-                        <BsCloudy className={styles.icon} />
+                        <div className={styles.icon}>
+
+                        </div>
                     </div>
                     <div className={styles.weather_details}>
-                        <p className={styles.details}>cloudy</p>
+                        <p className={styles.details}>{weatherDetails}</p>
                     </div>
                 </div>
                 <div className={styles.city}>
