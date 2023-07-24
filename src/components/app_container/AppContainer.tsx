@@ -4,17 +4,30 @@ import { CiLocationOn } from "react-icons/ci";
 import styles from './AppContainer.module.scss';
 
 import { SearchInput } from "../search_input/SearchInput";
+import { useState } from "react";
 
 
 
 export const AppContainer = () => {
+    //location and weather detail states
+    const [cityName, setCityName] = useState('');
+    const [countryName, setCountryName] = useState('');
 
+    const setCity = (cityName: string) => {
+        setCityName(cityName);
+        console.log(cityName);
+    }
+
+    const setCountry = (countryName: string) => {
+        setCountryName(countryName);
+        console.log(countryName);
+    }
 
     return (
         <>
             <div className={styles.main_container}></div>
             <div className={styles.app_container}>
-                <SearchInput />
+                <SearchInput setCity={setCity} setCountry={setCountry} />
                 <div className={styles.temperature}>
                     <p className={styles.degrees}>35</p>
                     <p className={styles.symbol}>&#8451;</p>
@@ -31,13 +44,12 @@ export const AppContainer = () => {
                     <div className={styles.location_icon}>
                         <CiLocationOn className={styles.icon} />
                     </div>
-
                     <div className={styles.location_name}>
-                        <p className={styles.name}>Chisinau,</p>
+                        <p className={styles.name}>{`${cityName}`}</p>
                     </div>
                 </div>
                 <div className={styles.country}>
-                    <p className={styles.name}>Moldova</p>
+                    <p className={styles.name}>{countryName}</p>
                 </div>
             </div>
         </>

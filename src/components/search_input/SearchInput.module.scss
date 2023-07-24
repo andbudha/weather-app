@@ -19,7 +19,7 @@
 
     .input_field {
         height: 45px;
-        width: 220px;
+        width: 240px;
         border-top-left-radius: 26px;
         border-bottom-left-radius: 26px;
         padding: 15px;
@@ -35,7 +35,7 @@
         border-left: 1px solid;
         border-right: 1px solid $secondary-color;
         height: 46px;
-        width: 100px;
+        width: 80px;
         cursor: pointer;
         @include flexBox(row, center, center);
 

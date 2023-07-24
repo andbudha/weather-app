@@ -1,9 +1,17 @@
 import { ChangeEvent, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import styles from './SearchInput.module.scss'
+import { getCityDetails } from "../api/http_requests";
 
-export const SearchInput = () => {
-    const [inputVavule, setInputValue] = useState('');
+type SearchInputPropsType = {
+    setCity: (cityName: string) => void
+    setCountry: (countryName: string) => void
+}
+export const SearchInput = (props: SearchInputPropsType) => {
+
+
+    //input value state
+    const [inputValue, setInputValue] = useState('');
 
     //input-value catching function
     const valueCatchingHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -12,13 +20,18 @@ export const SearchInput = () => {
 
     //location searching function
     const searchHandler = () => {
-        console.log(inputVavule);
+        getCityDetails(inputValue)
+            .then(response => {
+                props.setCity(response.EnglishName);
+                props.setCountry(response.Country.EnglishName);
+            });
+
         setInputValue('');
     }
     return (
         <div className={styles.search_container}>
             <input
-                value={inputVavule}
+                value={inputValue}
                 type="text"
                 className={styles.input_field}
                 onChange={valueCatchingHandler}
