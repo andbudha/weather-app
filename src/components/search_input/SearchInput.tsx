@@ -1,17 +1,21 @@
 import { ChangeEvent, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import styles from './SearchInput.module.scss'
-import { getCityDetails } from "../api/http_requests";
+import { getCityDetails, getWeatherDetails } from "../api/http_requests";
 
 type SearchInputPropsType = {
     setCity: (cityName: string) => void
     setCountry: (countryName: string) => void
+    getTemperature: (temperature: number) => void
+    getDetails: (weatherDetails: string) => void
 }
 export const SearchInput = (props: SearchInputPropsType) => {
 
 
     //input value state
     const [inputValue, setInputValue] = useState('');
+    //location key state
+    const [cityKey, setCityKey] = useState('');
 
     //input-value catching function
     const valueCatchingHandler = (event: ChangeEvent<HTMLInputElement>) => {
@@ -22,8 +26,19 @@ export const SearchInput = (props: SearchInputPropsType) => {
     const searchHandler = () => {
         getCityDetails(inputValue)
             .then(response => {
+                setCityKey(response.Key);
+                //setting location names
                 props.setCity(response.EnglishName);
                 props.setCountry(response.Country.EnglishName);
+            });
+
+        getWeatherDetails(cityKey)
+            .then(response => {
+                console.log(response);
+                props.getTemperature(response.Temperature.Metric.Value);
+                props.getDetails(response.WeatherText);
+                console.log(response.Temperature.Metric.Value);
+                console.log(response.WeatherText);
             });
 
         setInputValue('');
