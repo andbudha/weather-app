@@ -1,10 +1,9 @@
 
-
-import { CiLocationOn } from "react-icons/ci";
 import styles from './AppContainer.module.scss';
-
+import weatherIcon from '../../imgs/icons/6.svg';
 import { SearchInput } from "../search_input/SearchInput";
 import { useState } from "react";
+import { CiLocationOn } from "react-icons/ci";
 
 
 
@@ -27,12 +26,16 @@ export const AppContainer = () => {
     }
 
     const getTemperature = (temperature: number) => {
-        const degrees = Math.floor(temperature);
+        const degrees = Math.round(temperature);
         setTemperature(degrees)
     }
 
     const getDetails = (weatherDetails: string) => {
         setWeatherDetails(weatherDetails)
+    }
+
+    const getIcon = (iconNumber: number) => {
+        setIcon(iconNumber)
     }
     return (
         <>
@@ -43,6 +46,7 @@ export const AppContainer = () => {
                     setCountry={setCountry}
                     getTemperature={getTemperature}
                     getDetails={getDetails}
+                    getIcon={getIcon}
                 />
                 <div className={styles.temperature}>
                     <p className={styles.degrees}>{temperature}</p>
@@ -50,9 +54,7 @@ export const AppContainer = () => {
                 </div>
                 <div className={styles.weather}>
                     <div className={styles.weather_icon}>
-                        <div className={styles.icon}>
-
-                        </div>
+                        <img src={weatherIcon} alt="" className={styles.icon} />
                     </div>
                     <div className={styles.weather_details}>
                         <p className={styles.details}>{weatherDetails}</p>

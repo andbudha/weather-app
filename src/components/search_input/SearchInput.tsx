@@ -8,6 +8,7 @@ type SearchInputPropsType = {
     setCountry: (countryName: string) => void
     getTemperature: (temperature: number) => void
     getDetails: (weatherDetails: string) => void
+    getIcon: (iconNumber: number) => void
 }
 export const SearchInput = (props: SearchInputPropsType) => {
 
@@ -37,8 +38,10 @@ export const SearchInput = (props: SearchInputPropsType) => {
                 console.log(response);
                 props.getTemperature(response.Temperature.Metric.Value);
                 props.getDetails(response.WeatherText);
+                props.getIcon(response.WeatherIcon);
                 console.log(response.Temperature.Metric.Value);
                 console.log(response.WeatherText);
+                console.log(response.WeatherIcon);
             });
 
         setInputValue('');
