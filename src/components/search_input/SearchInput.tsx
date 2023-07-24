@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { KeyboardEvent, ChangeEvent, useState } from "react";
 import { BiSearch } from "react-icons/bi";
 import styles from './SearchInput.module.scss'
 import { getCityDetails, getWeatherDetails } from "../api/http_requests";
@@ -12,39 +12,43 @@ type SearchInputPropsType = {
 }
 export const SearchInput = (props: SearchInputPropsType) => {
 
-
     //input value state
     const [inputValue, setInputValue] = useState('');
-    //location key state
-    const [cityKey, setCityKey] = useState('');
 
     //input-value catching function
     const valueCatchingHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setInputValue(event.currentTarget.value)
     }
 
-    //location searching function
-    const searchHandler = () => {
+
+    const getWeather = () => {
         getCityDetails(inputValue)
             .then(response => {
-                setCityKey(response.Key);
+                // setting weather details
+                getWeatherDetails(response.Key)
+                    .then(response => {
+                        props.getTemperature(response.Temperature.Metric.Value);
+                        props.getDetails(response.WeatherText);
+                        props.getIcon(response.WeatherIcon);
+                    });
                 //setting location names
                 props.setCity(response.EnglishName);
                 props.setCountry(response.Country.EnglishName);
             });
+    }
 
-        getWeatherDetails(cityKey)
-            .then(response => {
-                console.log(response);
-                props.getTemperature(response.Temperature.Metric.Value);
-                props.getDetails(response.WeatherText);
-                props.getIcon(response.WeatherIcon);
-                console.log(response.Temperature.Metric.Value);
-                console.log(response.WeatherText);
-                console.log(response.WeatherIcon);
-            });
-
+    // on click get weather details
+    const onClickHandler = () => {
+        getWeather();
         setInputValue('');
+    }
+
+    //on keydown get weather details
+    const onEnterkHandler = (event: KeyboardEvent<HTMLInputElement>) => {
+        if (event.key === 'Enter') {
+            getWeather();
+            setInputValue('');
+        }
     }
     return (
         <div className={styles.search_container}>
@@ -53,8 +57,9 @@ export const SearchInput = (props: SearchInputPropsType) => {
                 type="text"
                 className={styles.input_field}
                 onChange={valueCatchingHandler}
+                onKeyDown={onEnterkHandler}
             />
-            <div className={styles.search_btn} onClick={searchHandler}>
+            <div className={styles.search_btn} onClick={onClickHandler}>
                 < BiSearch className={styles.search_icon} />
             </div>
         </div>

@@ -24,7 +24,6 @@
     position: absolute;
     height: 450px;
     width: 400px;
-    // border: 2px solid $primary-color;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -35,7 +34,6 @@
 .temperature {
     height: 65px;
     width: 320px;
-    // border: 1px solid $primary-color;
     @include flexBox(row, center, center);
 
     .degrees,

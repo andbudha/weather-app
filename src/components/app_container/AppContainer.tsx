@@ -1,11 +1,9 @@
 
 import styles from './AppContainer.module.scss';
-import weatherIcon from '../../imgs/icons/6.svg';
 import { SearchInput } from "../search_input/SearchInput";
 import { useState } from "react";
 import { CiLocationOn } from "react-icons/ci";
-
-
+import { Icon } from '../icon/Icon';
 
 export const AppContainer = () => {
     //location and weather detail states
@@ -13,16 +11,14 @@ export const AppContainer = () => {
     const [countryName, setCountryName] = useState('');
     const [temperature, setTemperature] = useState<null | number>(null);
     const [weatherDetails, setWeatherDetails] = useState('');
-    const [icon, setIcon] = useState<null | number>(null);
+    const [iconID, setIconID] = useState<null | number>(null);
 
     const setCity = (cityName: string) => {
         setCityName(cityName);
-        console.log(cityName);
     }
 
     const setCountry = (countryName: string) => {
         setCountryName(countryName);
-        console.log(countryName);
     }
 
     const getTemperature = (temperature: number) => {
@@ -35,8 +31,9 @@ export const AppContainer = () => {
     }
 
     const getIcon = (iconNumber: number) => {
-        setIcon(iconNumber)
+        setIconID(iconNumber)
     }
+
     return (
         <>
             <div className={styles.main_container}></div>
@@ -54,7 +51,9 @@ export const AppContainer = () => {
                 </div>
                 <div className={styles.weather}>
                     <div className={styles.weather_icon}>
-                        <img src={weatherIcon} alt="" className={styles.icon} />
+                        <div className={styles.icon}>
+                            <Icon iconID={iconID} />
+                        </div>
                     </div>
                     <div className={styles.weather_details}>
                         <p className={styles.details}>{weatherDetails}</p>
