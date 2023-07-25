@@ -9,7 +9,7 @@ type SearchInputPropsType = {
     getTemperature: (temperature: number) => void
     getDetails: (weatherDetails: string) => void
     getIcon: (iconNumber: number) => void
-    displayCard: () => void
+    displayCard: (newCardStatus: boolean) => void
     activateLoder: (newStatus: boolean) => void
     activateError: (newErrorStatus: boolean) => void
 }
@@ -28,7 +28,7 @@ export const SearchInput = (props: SearchInputPropsType) => {
         props.activateLoder(true);
         getCityDetails(inputValue)
             .then(response => {
-                if (response.status === 200) {
+                if (response.EnglishName) {
                     // setting weather details
                     getWeatherDetails(response.Key)
                         .then(response => {
@@ -36,12 +36,14 @@ export const SearchInput = (props: SearchInputPropsType) => {
                             props.getTemperature(response.Temperature.Metric.Value);
                             props.getDetails(response.WeatherText);
                             props.getIcon(response.WeatherIcon);
-                            props.displayCard();
+                            props.displayCard(true);
                         });
                     //setting location names
                     props.setCity(response.EnglishName);
                     props.setCountry(response.Country.EnglishName);
+
                 } else {
+                    props.activateLoder(false);
                     props.activateError(true);
                     setTimeout(() => {
                         props.activateError(false);
@@ -50,6 +52,7 @@ export const SearchInput = (props: SearchInputPropsType) => {
             })
             .catch(err => {
                 props.activateLoder(false);
+                props.displayCard(false);
                 props.activateError(true);
                 setTimeout(() => {
                     props.activateError(false);

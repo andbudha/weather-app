@@ -10,44 +10,108 @@
 
 .container {
     height: 100%;
-    @include flexBox(column, center, center);
-
-    .sun_spinner {
-        height: 150px;
-        width: 150px;
-    }
+    @include flexBox(column, space-evenly, center);
 
     .loader {
+        width: 20px;
+        height: 20px;
+        position: relative;
+    }
+
+    .loader::before,
+    .loader::after {
+        content: '';
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: 48em;
+        height: 48em;
+        background-image:
+            radial-gradient(circle 8px, #F1C93B 100%, transparent 0),
+            radial-gradient(circle 8px, #F1C93B 100%, transparent 0),
+            radial-gradient(circle 8px, #F1C93B 100%, transparent 0),
+            radial-gradient(circle 8px, #F1C93B 100%, transparent 0),
+            radial-gradient(circle 8px, #F1C93B 100%, transparent 0),
+            radial-gradient(circle 8px, #F1C93B 100%, transparent 0),
+            radial-gradient(circle 8px, #F1C93B 100%, transparent 0),
+            radial-gradient(circle 8px, #F1C93B 100%, transparent 0);
+        background-position: 0em -18em, 0em 18em, 18em 0em, -18em 0em,
+            13em -13em, -13em -13em, 13em 13em, -13em 13em;
+        background-repeat: no-repeat;
+        font-size: 0.5px;
+        border-radius: 50%;
+        animation: blast 1s ease-in infinite;
+    }
+
+    .loader::after {
+        font-size: 1px;
+        background: #F1C93B;
+        animation: bounce 1s ease-in infinite;
+    }
+
+    @keyframes bounce {
+
+        0%,
+        100% {
+            font-size: 0.75px
+        }
+
+        50% {
+            font-size: 1.5px
+        }
+    }
+
+    @keyframes blast {
+
+        0%,
+        40% {
+            font-size: 0.5px;
+        }
+
+        70% {
+            opacity: 1;
+            font-size: 4px;
+        }
+
+        100% {
+            font-size: 6px;
+            opacity: 0;
+        }
+    }
+
+    .loader2 {
         color: $primary-color;
         display: inline-block;
         position: relative;
         font-size: $normal-font-size;
         box-sizing: border-box;
-    }
 
-    .loader::after {
-        content: '';
-        width: 5px;
-        height: 5px;
-        background: currentColor;
-        position: absolute;
-        bottom: 10px;
-        right: -10px;
-        box-sizing: border-box;
-        animation: animloader 1s linear infinite;
-    }
-
-    @keyframes animloader {
-        0% {
-            box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+        &::after {
+            content: '';
+            width: 5px;
+            height: 5px;
+            background: currentColor;
+            position: absolute;
+            bottom: 10px;
+            right: -10px;
+            box-sizing: border-box;
+            animation: animloader 1s linear infinite;
         }
 
-        50% {
-            box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
-        }
+        @keyframes animloader {
+            0% {
+                box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+            }
 
-        100% {
-            box-shadow: 10px 0 white, 20px 0 white;
+            50% {
+                box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
+            }
+
+            100% {
+                box-shadow: 10px 0 white, 20px 0 white;
+            }
         }
     }
+
 }

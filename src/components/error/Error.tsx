@@ -1,4 +1,3 @@
-import lightning from '../../imgs/icons/15.svg';
 import styles from './Error.module.scss';
 
 
@@ -6,8 +5,8 @@ import styles from './Error.module.scss';
 export const Error = () => {
     return (
         <div className={styles.container}>
-            <div className={styles.lightning}>
-                <img src={lightning} alt="lightning img" />
+            <div className={styles.cloud}>
+                <span className={styles.loader}></span>
             </div>
             <p>Unexpected error.</p>
             <p>Try again, please.</p>
