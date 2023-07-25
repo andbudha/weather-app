@@ -9,6 +9,7 @@ type SearchInputPropsType = {
     getTemperature: (temperature: number) => void
     getDetails: (weatherDetails: string) => void
     getIcon: (iconNumber: number) => void
+    displayCard: () => void
 }
 export const SearchInput = (props: SearchInputPropsType) => {
 
@@ -30,6 +31,7 @@ export const SearchInput = (props: SearchInputPropsType) => {
                         props.getTemperature(response.Temperature.Metric.Value);
                         props.getDetails(response.WeatherText);
                         props.getIcon(response.WeatherIcon);
+                        props.displayCard();
                     });
                 //setting location names
                 props.setCity(response.EnglishName);
@@ -58,6 +60,8 @@ export const SearchInput = (props: SearchInputPropsType) => {
                 className={styles.input_field}
                 onChange={valueCatchingHandler}
                 onKeyDown={onEnterkHandler}
+
+                placeholder="Enter desired location..."
             />
             <div className={styles.search_btn} onClick={onClickHandler}>
                 < BiSearch className={styles.search_icon} />

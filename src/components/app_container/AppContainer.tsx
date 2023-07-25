@@ -12,6 +12,12 @@ export const AppContainer = () => {
     const [temperature, setTemperature] = useState<null | number>(null);
     const [weatherDetails, setWeatherDetails] = useState('');
     const [iconID, setIconID] = useState<null | number>(null);
+    //weather detail container state
+    const [activeCard, setActiveCard] = useState(false);
+
+    const displayCard = () => {
+        setActiveCard(true);
+    }
 
     const setCity = (cityName: string) => {
         setCityName(cityName);
@@ -34,6 +40,7 @@ export const AppContainer = () => {
         setIconID(iconNumber)
     }
 
+
     return (
         <>
             <div className={styles.main_container}></div>
@@ -44,31 +51,39 @@ export const AppContainer = () => {
                     getTemperature={getTemperature}
                     getDetails={getDetails}
                     getIcon={getIcon}
+                    displayCard={displayCard}
                 />
-                <div className={styles.temperature}>
-                    <p className={styles.degrees}>{temperature}</p>
-                    <p className={styles.symbol}>&#8451;</p>
-                </div>
-                <div className={styles.weather}>
-                    <div className={styles.weather_icon}>
-                        <div className={styles.icon}>
-                            <Icon iconID={iconID} />
+                <div className={styles.weather_card}>
+
+                    {activeCard &&
+                        <div className={styles.card}>
+                            <div className={styles.temperature}>
+                                <p className={styles.degrees}>{temperature}</p>
+                                <p className={styles.symbol}>&#8451;</p>
+                            </div>
+                            <div className={styles.weather}>
+                                <div className={styles.weather_icon}>
+                                    <div className={styles.icon}>
+                                        <Icon iconID={iconID} />
+                                    </div>
+                                </div>
+                                <div className={styles.weather_details}>
+                                    <p className={styles.details}>{weatherDetails}</p>
+                                </div>
+                            </div>
+                            <div className={styles.city}>
+                                <div className={styles.location_icon}>
+                                    <CiLocationOn className={styles.icon} />
+                                </div>
+                                <div className={styles.location_name}>
+                                    <p className={styles.name}>{`${cityName}`}</p>
+                                </div>
+                            </div>
+                            <div className={styles.country}>
+                                <p className={styles.name}>{countryName}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className={styles.weather_details}>
-                        <p className={styles.details}>{weatherDetails}</p>
-                    </div>
-                </div>
-                <div className={styles.city}>
-                    <div className={styles.location_icon}>
-                        <CiLocationOn className={styles.icon} />
-                    </div>
-                    <div className={styles.location_name}>
-                        <p className={styles.name}>{`${cityName}`}</p>
-                    </div>
-                </div>
-                <div className={styles.country}>
-                    <p className={styles.name}>{countryName}</p>
+                    }
                 </div>
             </div>
         </>

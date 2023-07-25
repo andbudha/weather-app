@@ -29,93 +29,101 @@
     transform: translate(-50%, -50%);
     @include flexBox(column, center, center);
 
-}
+    .weather_card {
+        // border: 1px solid $primary-color;
+        height: 330px;
 
-.temperature {
-    height: 65px;
-    width: 320px;
-    @include flexBox(row, center, center);
+        .card {
+            display: block;
 
-    .degrees,
-    .symbol {
-        font-size: $extra-lagre-font-size;
-        color: $primary-color;
-        font-weight: 800;
-        letter-spacing: 1px;
-    }
-}
+            .temperature {
+                height: 65px;
+                width: 320px;
+                @include flexBox(row, center, center);
 
-.weather {
-    height: 150px;
-    width: 320px;
-    @include flexBox(column, center, center);
+                .degrees,
+                .symbol {
+                    font-size: $extra-lagre-font-size;
+                    color: $primary-color;
+                    font-weight: 800;
+                    letter-spacing: 1px;
+                }
+            }
 
-    .weather_icon {
-        color: $primary-color;
-        height: 120px;
-        width: 120px;
-        @include flexBox(column, center, center);
+            .weather {
+                height: 150px;
+                width: 320px;
+                @include flexBox(column, center, center);
 
-        .icon {
-            height: 100%;
-            width: 100%;
+                .weather_icon {
+                    color: $primary-color;
+                    height: 120px;
+                    width: 120px;
+                    @include flexBox(column, center, center);
+
+                    .icon {
+                        height: 100%;
+                        width: 100%;
+                    }
+                }
+
+                .weather_details {
+                    height: 30px;
+                    @include flexBox(row, center, center);
+
+                    .details {
+                        font-size: $normal-font-size;
+                        color: $primary-color;
+                        font-weight: 500;
+                        letter-spacing: 1px;
+                    }
+                }
+            }
+
+            .city {
+                height: 50px;
+                width: 320px;
+                @include flexBox(row, center, center);
+
+                .location_icon {
+                    color: $primary-color;
+                    height: 100%;
+                    width: 35px;
+                    @include flexBox(row, center, center);
+
+                    .icon {
+                        height: 60%;
+                        width: 100%;
+                    }
+                }
+
+                .location_name {
+                    height: 100%;
+                    @include flexBox(row, center, center);
+
+                    .name {
+                        font-size: $primary-font-size;
+                        color: $primary-color;
+                        font-weight: 600;
+                        letter-spacing: 1px;
+                    }
+                }
+
+            }
+
+            .country {
+                height: 50px;
+                width: 320px;
+                // border: 1px solid $primary-color;
+                @include flexBox(row, center, center);
+
+                .name {
+                    font-size: $lagre-font-size;
+                    color: $primary-color;
+                    font-weight: 600;
+                    letter-spacing: 1px;
+                }
+            }
         }
-    }
-
-    .weather_details {
-        height: 30px;
-        @include flexBox(row, center, center);
-
-        .details {
-            font-size: $normal-font-size;
-            color: $primary-color;
-            font-weight: 500;
-            letter-spacing: 1px;
-        }
-    }
-}
-
-.city {
-    height: 50px;
-    width: 320px;
-    @include flexBox(row, center, center);
-
-    .location_icon {
-        color: $primary-color;
-        height: 100%;
-        width: 35px;
-        @include flexBox(row, center, center);
-
-        .icon {
-            height: 60%;
-            width: 100%;
-        }
-    }
-
-    .location_name {
-        height: 100%;
-        @include flexBox(row, center, center);
-
-        .name {
-            font-size: $primary-font-size;
-            color: $primary-color;
-            font-weight: 600;
-            letter-spacing: 1px;
-        }
-    }
-
-}
-
-.country {
-    height: 50px;
-    width: 320px;
-    // border: 1px solid $primary-color;
-    @include flexBox(row, center, center);
-
-    .name {
-        font-size: $lagre-font-size;
-        color: $primary-color;
-        font-weight: 600;
-        letter-spacing: 1px;
     }
 }
