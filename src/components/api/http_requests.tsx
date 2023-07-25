@@ -3,7 +3,6 @@ const baseCityUrl = 'http://dataservice.accuweather.com/locations/v1/cities/sear
 const baseCityKeyUrl = 'http://dataservice.accuweather.com/currentconditions/v1/';
 const apiKey = 'IwBzaAoji50F40fF1qSeMWcEZUQxTvPy';
 
-
 export const getCityDetails = async (location: string) => {
     const result = await fetch(`${baseCityUrl}?apikey=${apiKey}&q=${location}`);
     const data = await result.json();

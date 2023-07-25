@@ -23,7 +23,6 @@ export const SearchInput = (props: SearchInputPropsType) => {
         setInputValue(event.currentTarget.value)
     }
 
-
     const getWeather = () => {
         props.activateLoder(true);
         getCityDetails(inputValue)

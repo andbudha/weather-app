@@ -39,7 +39,6 @@ import img42 from '../../imgs/icons/42.svg';
 import img43 from '../../imgs/icons/43.svg';
 import img44 from '../../imgs/icons/44.svg';
 
-
 type IconPropsType = {
     iconID: number | null
 }

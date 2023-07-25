@@ -1,4 +1,3 @@
-
 import styles from './AppContainer.module.scss';
 import { SearchInput } from "../search_input/SearchInput";
 import { useState } from "react";
