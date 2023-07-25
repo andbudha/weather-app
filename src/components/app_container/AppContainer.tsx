@@ -4,6 +4,7 @@ import { SearchInput } from "../search_input/SearchInput";
 import { useState } from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { Icon } from '../icon/Icon';
+import { Loader } from '../loader/Loader';
 
 export const AppContainer = () => {
     //location and weather detail states
@@ -14,7 +15,8 @@ export const AppContainer = () => {
     const [iconID, setIconID] = useState<null | number>(null);
     //weather detail container state
     const [activeCard, setActiveCard] = useState(false);
-
+    //loader state
+    const [loader, setLoader] = useState(true);
     const displayCard = () => {
         setActiveCard(true);
     }
@@ -54,7 +56,7 @@ export const AppContainer = () => {
                     displayCard={displayCard}
                 />
                 <div className={styles.weather_card}>
-
+                    {loader && <div className={styles.active_loader}><Loader /></div>}
                     {activeCard &&
                         <div className={styles.card}>
                             <div className={styles.temperature}>

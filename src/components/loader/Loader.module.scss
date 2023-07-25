@@ -1,0 +1,53 @@
+@import '../../utilities/sass_variables.module.scss';
+@import '../../utilities/sass_mixins.module.scss';
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+.container {
+    height: 100%;
+    @include flexBox(column, center, center);
+
+    .sun_spinner {
+        height: 150px;
+        width: 150px;
+    }
+
+    .loader {
+        color: #F1C93B;
+        display: inline-block;
+        position: relative;
+        font-size: $normal-font-size;
+        box-sizing: border-box;
+    }
+
+    .loader::after {
+        content: '';
+        width: 5px;
+        height: 5px;
+        background: currentColor;
+        position: absolute;
+        bottom: 10px;
+        right: -10px;
+        box-sizing: border-box;
+        animation: animloader 1s linear infinite;
+    }
+
+    @keyframes animloader {
+        0% {
+            box-shadow: 10px 0 rgba(255, 255, 255, 0), 20px 0 rgba(255, 255, 255, 0);
+        }
+
+        50% {
+            box-shadow: 10px 0 white, 20px 0 rgba(255, 255, 255, 0);
+        }
+
+        100% {
+            box-shadow: 10px 0 white, 20px 0 white;
+        }
+    }
+}

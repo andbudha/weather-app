@@ -11,12 +11,10 @@
 .main_container {
     height: 100vh;
     width: 100%;
-    background-image: url('../../imgs/modern-tokyo-street-background.jpg');
+    background-image: url('../../imgs/background_img8.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
-    filter: blur(4px);
-    -webkit-filter: blur(4px);
 }
 
 .app_container {
@@ -32,6 +30,17 @@
     .weather_card {
         // border: 1px solid $primary-color;
         height: 330px;
+        position: relative;
+
+        .active_loader {
+            border: 1px solid $primary-color;
+            position: absolute;
+            height: 100%;
+            width: 330px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
 
         .card {
             display: block;
@@ -114,7 +123,6 @@
             .country {
                 height: 50px;
                 width: 320px;
-                // border: 1px solid $primary-color;
                 @include flexBox(row, center, center);
 
                 .name {
