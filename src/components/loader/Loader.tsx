@@ -1,4 +1,3 @@
-import loader from '../../imgs/icons/1.svg';
 import styles from './Loader.module.scss';
 
 
