@@ -93,7 +93,7 @@ export const Icon = (props: IconPropsType) => {
 
     return (
         <div>
-            <img src={weatherImg} alt="current weather image" />
+            <img src={weatherImg} alt={'weather icon'} />
         </div>
     );
 }
