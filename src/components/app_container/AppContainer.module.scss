@@ -33,7 +33,15 @@
         position: relative;
 
         .active_loader {
-            border: 1px solid $primary-color;
+            position: absolute;
+            height: 100%;
+            width: 330px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .error {
             position: absolute;
             height: 100%;
             width: 330px;

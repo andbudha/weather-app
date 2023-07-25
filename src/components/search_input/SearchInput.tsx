@@ -10,6 +10,8 @@ type SearchInputPropsType = {
     getDetails: (weatherDetails: string) => void
     getIcon: (iconNumber: number) => void
     displayCard: () => void
+    activateLoder: (newStatus: boolean) => void
+    activateError: (newErrorStatus: boolean) => void
 }
 export const SearchInput = (props: SearchInputPropsType) => {
 
@@ -23,20 +25,36 @@ export const SearchInput = (props: SearchInputPropsType) => {
 
 
     const getWeather = () => {
+        props.activateLoder(true);
         getCityDetails(inputValue)
             .then(response => {
-                // setting weather details
-                getWeatherDetails(response.Key)
-                    .then(response => {
-                        props.getTemperature(response.Temperature.Metric.Value);
-                        props.getDetails(response.WeatherText);
-                        props.getIcon(response.WeatherIcon);
-                        props.displayCard();
-                    });
-                //setting location names
-                props.setCity(response.EnglishName);
-                props.setCountry(response.Country.EnglishName);
-            });
+                if (response.status === 200) {
+                    // setting weather details
+                    getWeatherDetails(response.Key)
+                        .then(response => {
+                            props.activateLoder(false);
+                            props.getTemperature(response.Temperature.Metric.Value);
+                            props.getDetails(response.WeatherText);
+                            props.getIcon(response.WeatherIcon);
+                            props.displayCard();
+                        });
+                    //setting location names
+                    props.setCity(response.EnglishName);
+                    props.setCountry(response.Country.EnglishName);
+                } else {
+                    props.activateError(true);
+                    setTimeout(() => {
+                        props.activateError(false);
+                    }, 3500);
+                }
+            })
+            .catch(err => {
+                props.activateLoder(false);
+                props.activateError(true);
+                setTimeout(() => {
+                    props.activateError(false);
+                }, 4500);
+            })
     }
 
     // on click get weather details
@@ -60,7 +78,6 @@ export const SearchInput = (props: SearchInputPropsType) => {
                 className={styles.input_field}
                 onChange={valueCatchingHandler}
                 onKeyDown={onEnterkHandler}
-
                 placeholder="Enter desired location..."
             />
             <div className={styles.search_btn} onClick={onClickHandler}>

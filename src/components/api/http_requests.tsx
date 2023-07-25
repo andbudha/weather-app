@@ -1,7 +1,7 @@
 
 const baseCityUrl = 'http://dataservice.accuweather.com/locations/v1/cities/search';
 const baseCityKeyUrl = 'http://dataservice.accuweather.com/currentconditions/v1/';
-const apiKey = 'EtMwAL633WGTwpnlQdlGDnwkYXBDqBwC';
+const apiKey = 'IwBzaAoji50F40fF1qSeMWcEZUQxTvPy';
 
 
 export const getCityDetails = async (location: string) => {

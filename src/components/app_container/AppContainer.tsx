@@ -5,6 +5,7 @@ import { useState } from "react";
 import { CiLocationOn } from "react-icons/ci";
 import { Icon } from '../icon/Icon';
 import { Loader } from '../loader/Loader';
+import { Error } from '../error/Error';
 
 export const AppContainer = () => {
     //location and weather detail states
@@ -16,7 +17,10 @@ export const AppContainer = () => {
     //weather detail container state
     const [activeCard, setActiveCard] = useState(false);
     //loader state
-    const [loader, setLoader] = useState(true);
+    const [loader, setLoader] = useState(false);
+    //error component state
+    const [error, setError] = useState(false);
+
     const displayCard = () => {
         setActiveCard(true);
     }
@@ -42,6 +46,15 @@ export const AppContainer = () => {
         setIconID(iconNumber)
     }
 
+    //loader activating func
+    const activateLoder = (newStatus: boolean) => {
+        setLoader(newStatus)
+    }
+
+    //error activating func
+    const activateError = (newErrorStatus: boolean) => {
+        setError(newErrorStatus);
+    }
 
     return (
         <>
@@ -54,10 +67,13 @@ export const AppContainer = () => {
                     getDetails={getDetails}
                     getIcon={getIcon}
                     displayCard={displayCard}
+                    activateLoder={activateLoder}
+                    activateError={activateError}
                 />
                 <div className={styles.weather_card}>
                     {loader && <div className={styles.active_loader}><Loader /></div>}
-                    {activeCard &&
+                    {error && <div className={styles.active_error}><Error /></div>}
+                    {activeCard && !loader &&
                         <div className={styles.card}>
                             <div className={styles.temperature}>
                                 <p className={styles.degrees}>{temperature}</p>
