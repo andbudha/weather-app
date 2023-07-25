@@ -21,8 +21,8 @@ export const AppContainer = () => {
     //error component state
     const [error, setError] = useState(false);
 
-    const displayCard = () => {
-        setActiveCard(true);
+    const displayCard = (newCardStatus: boolean) => {
+        setActiveCard(newCardStatus);
     }
 
     const setCity = (cityName: string) => {
